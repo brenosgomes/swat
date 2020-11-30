@@ -5,7 +5,13 @@ const crypto = require("crypto");
 const storageTypes = {
     local: multer.diskStorage({
         destination: (req, file, cb) => {
-          cb(null, path.resolve(__dirname, "..", "tmp", "uploads"));
+            if (file.fieldname === "file") { // if uploading resume
+                cb(null, path.resolve(__dirname, "..", "tmp", "tcc"));
+            } else if(file.fieldname === "cover"){ // else uploading image
+                cb(null, path.resolve(__dirname, "..", "tmp", "cover"));
+            } else {
+                cb(null, path.resolve(__dirname, "..", "tmp", "uploads"));
+            }
         },
         filename: (req, file, cb) => {
             crypto.randomBytes(16, (err, hash) => {
@@ -26,11 +32,19 @@ module.exports = {
         fileSize: 1 * 1024 * 1024,
     },
     fileFilter: (req, file, cb) => {
-        allowedMimes = [
-            "image/jpg",    
-            "image/jpeg",
-            "image/png"
-        ];
+        if (file.fieldname === "file"){
+            allowedMimes = [
+                "application/pdf",
+                "application/docx",
+                "application/msword"
+            ]
+        } else {
+            allowedMimes = [
+                "image/jpg",    
+                "image/jpeg",
+                "image/png"
+            ]
+        }
 
         if (allowedMimes.includes(file.mimetype)) {
             cb(null, true);

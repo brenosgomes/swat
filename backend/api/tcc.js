@@ -69,7 +69,7 @@ module.exports = (app) => {
         } = req.body;
 
         if (!req.body.tcc_url) req.body.tcc_url = `http://localhost:5000/files/${req.files['file'][0].filename}`;
-        if (!req.body.tcc_cover_url) req.body.tcc_url = `http://localhost:5000/files/${req.files['cover'][0].filename}`;
+        if (!req.body.tcc_cover_url) req.body.tcc_cover_url = `http://localhost:5000/files/${req.files['cover'][0].filename}`;
 
         try {
             const newtcc = await knex("tcc").insert({
