@@ -7,11 +7,10 @@ module.exports = (app) => {
         try {
             existsOrError(req.params.query, "tcc does not exist!");
 
-            const getIdTcc = await knex("tcc")
+            const TCCs = await knex("tcc")
                 .where({ tcc_title: req.params.query });
-            existsOrError(getIdTcc, "tcc not found");
+            TCCs ? res.json(TCCs) : res.json("");
 
-            res.json(getIdTcc);
         } catch (msg) {
             return res.status(400).send(msg);
         }

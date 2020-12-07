@@ -74,7 +74,7 @@ module.exports = (app) => {
             teacher_password = encryptPassword(teacher_password);
             delete teacher_confirm_password;
 
-            await knex("teacher").insert({
+            const finalTeacher = await knex("teacher").insert({
                 teacher_name,
                 teacher_email,
                 teacher_password,
@@ -85,7 +85,7 @@ module.exports = (app) => {
                 teacher_url: req.body.url,
             });
 
-            res.json(teacherFromDB);
+            res.json({id_teacher:finalTeacher[0], profile_pic: req.body.url});
         } catch (msg) {
             console.log(msg);
             return res.status(400).send(msg);

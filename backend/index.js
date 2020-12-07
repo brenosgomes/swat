@@ -12,5 +12,5 @@ consign()
     .into(app);
 
 app.listen(5000, () =>{
-    console.log("Backend executando (^･ｪ･^)");
+    console.log("Backend executando (^･ｪ･^) -> 5000");
 })

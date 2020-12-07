@@ -6,6 +6,9 @@ module.exports = app => {
         .get(app.api.teacher.get)
         .post(multer(multerConfig).single("photograph"), app.api.teacher.post)
 
+    app.route("/teacher/:id")
+        .get(app.api.teacher.getById)
+
     app.route("/tcc")
         .get(app.api.tcc.get)
         .post(multer(multerConfig).fields([{name: "file", maxCount: "1"}, {name: "cover", maxCount: "1"}]), app.api.tcc.post)
