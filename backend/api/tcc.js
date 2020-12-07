@@ -33,13 +33,13 @@ module.exports = (app) => {
                 .where({ tcc_id: req.params.id })
                 .first();
 
-            const rowsDeleted = await knex("tcc")
+            const removeTcc = await knex("tcc")
                 .del()
                 .where({ tcc_id: rows.tcc_id });
 
-            existsOrError(rowsDeleted, "tcc not found");
+            existsOrError(removeTcc, "tcc not found");
 
-            fs.unlink(`tmp/uploads/${rows.tcc_key}`, (err) => {
+            fs.unlink(`tmp/tcc/${rows.tcc_key}`, (err) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -47,7 +47,13 @@ module.exports = (app) => {
                 }
             });
 
-            console.log(rows.tcc_key);
+            fs.unlink(`tmp/cover/${rows.tcc_cover_key}`, (err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                console.log("removed");
+                }
+            });
 
             res.status(204).send();
         } catch (msg) {
