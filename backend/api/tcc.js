@@ -100,6 +100,23 @@ module.exports = (app) => {
             return res.status(500).send(err);
         }
     };
+
+    const put = async (req, res) => {
+        const tcc_status = req.body;
+        const tcc_id = req.params.id;
+        try{
+            existsOrError(tcc_id, 'tcc does not exist!')
+            
+            const attTcc = await knex("tcc")
+                .update(tcc_status)
+                .where({ tcc_id: tcc_id })
+            existsOrError(attTcc, 'tcc not found')
+            
+            res.status(200).send();
+        } catch(msg) {
+            return res.status(400).send(msg);   
+        }
+    }
     
-    return { get, getById, post, remove };
+    return { get, getById, post, remove, put };
 };

@@ -18,6 +18,7 @@ module.exports = app => {
     app.route("/tcc/:id")
         .get(app.api.tcc.getById)
         .delete(app.api.tcc.remove)
+        .put(app.api.tcc.put)
 
     app.route("/searchAuthor/:query").get(app.api.searchAuthor.get)
     app.route("/searchYear/:query").get(app.api.searchYear.get)
