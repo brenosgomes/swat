@@ -7,6 +7,7 @@ exports.up = function(knex) {
         table.string("teacher_password").notNull();
         table.string("teacher_department").notNull();
         table.string("teacher_collegiate").notNull();
+        table.boolean("teacher_admin").notNull();
         table.string("teacher_size").nullable();
         table.string("teacher_key").nullable();
         table.string("teacher_url").nullable();
