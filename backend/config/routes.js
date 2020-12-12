@@ -25,6 +25,7 @@ module.exports = app => {
     app.route("/searchTitle/:query").get(app.api.searchTitle.get)
     app.route("/searchArea/:query").get(app.api.searchArea.get)
     app.route("/searchStatus/:query").get(app.api.searchStatus.get)
+    app.route("/searchTeacher/:id").get(app.api.searchTeacher.get)
 
     app.route("/auth").post(app.api.teacherAuth.signIn)
     app.route("/validateToken").post(app.api.teacherAuth.validateToken)

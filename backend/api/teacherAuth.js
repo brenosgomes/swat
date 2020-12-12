@@ -31,6 +31,7 @@ module.exports = (app) => {
       name: user.teacher_name,
       departament: user.teacher_departament,
       collegiate: user.teacher_collegiate,
+      admin: user.teacher_admin,
       iat: now,
       exp: now + 1000 * 60 * 60 * 24,
     };

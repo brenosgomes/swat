@@ -8,7 +8,7 @@ module.exports = (app) => {
             existsOrError(req.params.id, "tcc does not exist!");
 
             const TCCs = await knex("tcc")
-                .where({ tcc_status: req.params.id });
+                .where({ teacher_id: req.params.id });
             TCCs ? res.json(TCCs) : res.json("");
 
         } catch (msg) {
