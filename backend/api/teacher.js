@@ -68,6 +68,7 @@ module.exports = (app) => {
             teacher_password,
             teacher_department,
             teacher_collegiate,
+            teacher_admin,
             teacher_confirm_password,
         } = req.body;
         if (!req.body.url)
@@ -95,6 +96,7 @@ module.exports = (app) => {
                 teacher_password,
                 teacher_department,
                 teacher_collegiate,
+                teacher_admin,
                 teacher_size: req.file.size,
                 teacher_key: req.file.filename,
                 teacher_url: req.body.url,

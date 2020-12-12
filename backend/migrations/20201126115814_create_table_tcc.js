@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.foreign("teacher_id").references("teacher_id").inTable("teacher").onDelete('CASCADE');
         table.string("tcc_title").notNull();
         table.string("tcc_author").notNull();
-        table.string("tcc_comments").notNull();
+        table.string("tcc_comments").nullable();
         table.string("tcc_summary").notNull();
         table.string("tcc_specialization").notNull();
         table.string("tcc_year").notNull();
