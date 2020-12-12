@@ -5,10 +5,10 @@ module.exports = (app) => {
 
     const get = async (req, res) => {
         try {
-            existsOrError(req.params.id, "tcc does not exist!");
+            existsOrError(req.params.query, "tcc does not exist!");
 
             const TCCs = await knex("tcc")
-                .where({ tcc_status: req.params.id });
+                .where({ tcc_status: req.params.query });
             TCCs ? res.json(TCCs) : res.json("");
 
         } catch (msg) {
